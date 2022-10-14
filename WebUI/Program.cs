@@ -5,19 +5,24 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.SqlLite;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
 
-//builder.Services.AddDbContext<AppDbContext>(option =>
-//option.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-//builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
-//    .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddScoped<AppDbContext>();
 
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDal, CategoryDal>();
+
+
+
 
 var app = builder.Build();
 

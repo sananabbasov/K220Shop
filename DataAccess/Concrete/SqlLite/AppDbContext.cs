@@ -17,12 +17,7 @@ namespace DataAccess.Concrete.SqlLite
         {
             builder.UseSqlite("Data Source=shop.db");
         }
-        //public AppDbContext(DbContextOptions options) : base(options)
-        //{
-        //}
-        public AppDbContext()
-        {
-        }
+        
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
