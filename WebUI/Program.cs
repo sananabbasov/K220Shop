@@ -20,7 +20,18 @@ builder.Services.AddScoped<AppDbContext>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDal, CategoryDal>();
 
+builder.Services.AddScoped<ISubCategoryService, SubCategoryManager>();
+builder.Services.AddScoped<ISubCategoryDal, SubCategoryDal>();
 
+builder.Services.AddScoped<IProductService, ProductManager>();
+builder.Services.AddScoped<IProductDal, ProductDal>();
+
+builder.Services.AddScoped<IPictureService, PictureManager>();
+builder.Services.AddScoped<IPictureDal, PictureDal>();
+
+
+builder.Services.AddScoped<IProductPictureService, ProductPictureManager>();
+builder.Services.AddScoped<IProductPictureDal, ProductPictureDal>();
 
 
 var app = builder.Build();
