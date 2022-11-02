@@ -22,5 +22,15 @@ namespace Business.Concrete
         {
             _productDal.Add(product);
         }
+
+        public List<Product> GetAllPopularProducts()
+        {
+            return _productDal.GetPopularProducts();
+        }
+
+        public List<Product> GetAllRecentProducts()
+        {
+            return _productDal.GetRecentProducts();
+        }
     }
 }

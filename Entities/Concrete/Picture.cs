@@ -11,5 +11,7 @@ namespace Entities.Concrete
     {
         public int Id { get; set; }
         public string PhotoUrl { get; set; }
+        public List<ProductPicture> ProductPictures { get; set; }
+
     }
 }

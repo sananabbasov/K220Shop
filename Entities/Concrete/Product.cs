@@ -22,5 +22,7 @@ namespace Entities.Concrete
         public SubCategory SubCategory { get; set; }
         public string UserId { get; set; }
         public User User { get; set; }
+        public int Hit { get; set; }
+        public List<ProductPicture> ProductPictures { get; set; }
     }
 }

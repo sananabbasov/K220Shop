@@ -34,6 +34,7 @@ builder.Services.AddScoped<IProductPictureService, ProductPictureManager>();
 builder.Services.AddScoped<IProductPictureDal, ProductPictureDal>();
 
 
+
 var app = builder.Build();
 
 app.UseHttpsRedirection();

@@ -10,5 +10,7 @@ namespace DataAccess.Abstract
 {
     public interface IProductDal : IRepositoryBase<Product>
     {
+        List<Product> GetRecentProducts();
+        List<Product> GetPopularProducts();
     }
 }

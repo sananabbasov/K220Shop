@@ -1,6 +1,7 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,19 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.SqlLite
 {
-    public class ProductDal : EfRepositoryBase<Product,AppDbContext>, IProductDal
+    public class ProductDal : EfRepositoryBase<Product, AppDbContext>, IProductDal
     {
+        public List<Product> GetPopularProducts()
+        {
+            using var _context = new AppDbContext();
+            var products = _context.Products.Include(x=>x.ProductPictures).ThenInclude(x=>x.Picture).OrderByDescending(x=>x.Hit).Take(8).ToList();
+            return products;
+        }
+
+        public List<Product> GetRecentProducts()
+        {
+            using AppDbContext _context = new();
+            return _context.Products.Include(x => x.ProductPictures).ThenInclude(x => x.Picture).OrderByDescending(x => x.Id).ToList();
+        }
     }
 }
