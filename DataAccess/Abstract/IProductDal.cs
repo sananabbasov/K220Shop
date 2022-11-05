@@ -12,5 +12,6 @@ namespace DataAccess.Abstract
     {
         List<Product> GetRecentProducts();
         List<Product> GetPopularProducts();
+        Product GetProduct(int id);
     }
 }

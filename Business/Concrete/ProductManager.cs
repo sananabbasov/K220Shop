@@ -32,5 +32,10 @@ namespace Business.Concrete
         {
             return _productDal.GetRecentProducts();
         }
+
+        public Product GetProductById(int id)
+        {
+            return _productDal.GetProduct(id);
+        }
     }
 }

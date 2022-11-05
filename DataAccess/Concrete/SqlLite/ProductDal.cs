@@ -19,6 +19,13 @@ namespace DataAccess.Concrete.SqlLite
             return products;
         }
 
+        public Product GetProduct(int id)
+        {
+            using var _context = new AppDbContext();
+            var product = _context.Products.Include(x => x.ProductPictures).ThenInclude(x => x.Picture).FirstOrDefault(x=>x.Id == id);
+            return product;
+        }
+
         public List<Product> GetRecentProducts()
         {
             using AppDbContext _context = new();

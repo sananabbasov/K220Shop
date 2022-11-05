@@ -12,5 +12,6 @@ namespace Business.Abstract
         void AddProduct(Product product);
         List<Product> GetAllRecentProducts();
         List<Product> GetAllPopularProducts();
+        Product GetProductById(int id);
     }
 }

@@ -200,9 +200,9 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="product_name h6 text-decoration-none text-truncate" href="">@product.Name</a>
+                        <a id="product_name_@product.Id" class="h6 text-decoration-none text-truncate" href="/product/detail/@product.Id">@product.Name</a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5 class="product_price">@product.Price ₼</h5>
+                            <h5 id="product_price_@product.Id" class="product_price">@product.Price ₼</h5>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
                             <small class="fa fa-star text-primary mr-1"></small>
@@ -254,13 +254,46 @@
 </div>
 <!-- Vendor End -->
 @section Scripts{
-    <script>
-        function AddToCart(id) {
-            var cart = document.getElementById(`cart_${id}`)
-            var image = cart.getElementsByTagName("img")[0].currentSrc
-            var name = document.getElementsByClassName("product_name").innerText
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>    
 
-            console.log(name)
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
         }
+        if (getCookie("products") == null) {
+            document.cookie = "products=" + JSON.stringify([])
+        }
+
+
+        function AddToCart(id) {
+            let cart = document.getElementById(`cart_${id}`)
+            let image = cart.getElementsByTagName("img")[0].currentSrc
+            let name = document.getElementById(`product_name_${id}`).innerText
+            let price = document.getElementById(`product_price_${id}`).innerText
+            let quantity = 1;
+            let cartItem = { id, image, name, price: price.replace(" ₼", "") * 1, quantity };
+            let currentCookie = JSON.parse(getCookie("products"));
+
+            let findProduct = currentCookie.length != 0 ? currentCookie.filter(x => x.id == id) : []
+
+            if (findProduct.length != 0) {
+                currentCookie.filter(x => x.id == id).map(data => {
+                    data.quantity += 1;
+                })
+                document.cookie = "products=" + JSON.stringify(currentCookie)
+            } else {
+                document.cookie = "products=" + JSON.stringify([...currentCookie, cartItem])
+            }
+            Swal.fire(
+                'Səbətə əlavə olundu!',
+                '',
+                'success'
+            )
+        }
+
+
     </script>
 }
+
