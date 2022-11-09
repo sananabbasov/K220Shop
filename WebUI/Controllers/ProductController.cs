@@ -20,7 +20,7 @@ namespace WebUI.Controllers
         public IActionResult Detail(int id)
         {
             var product = _productService.GetProductById(id);
-            var likeProducts = _productService.GetProductsBySubCategoryId(product.SubCategoryId);
+            var likeProducts = _productService.GetProductsBySubCategoryId(product.SubCategoryId, product.Id);
             ProductDetailVM vm = new()
             {
                 Product = product,

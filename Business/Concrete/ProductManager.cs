@@ -38,9 +38,9 @@ namespace Business.Concrete
             return _productDal.GetProduct(id);
         }
 
-        public List<Product> GetProductsBySubCategoryId(int id)
+        public List<Product> GetProductsBySubCategoryId(int subCategoryId, int productId)
         {
-            return _productDal.GetLikeProducts(id);
+            return _productDal.GetLikeProducts(subCategoryId,productId);
         }
     }
 }

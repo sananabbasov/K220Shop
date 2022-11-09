@@ -12,10 +12,10 @@ namespace DataAccess.Concrete.SqlLite
 {
     public class ProductDal : EfRepositoryBase<Product, AppDbContext>, IProductDal
     {
-        public List<Product> GetLikeProducts(int subCategoryId)
+        public List<Product> GetLikeProducts(int subCategoryId, int productId)
         {
             using var context = new AppDbContext();
-            var products =  context.Products.Include(x=>x.ProductPictures).ThenInclude(x=>x.Picture).Where(x=>x.SubCategoryId == subCategoryId).ToList();
+            var products =  context.Products.Include(x=>x.ProductPictures).ThenInclude(x=>x.Picture).Where(x=>x.SubCategoryId == subCategoryId && x.Id != productId).ToList();
             return products;
         }
 

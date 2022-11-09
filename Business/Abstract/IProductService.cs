@@ -13,6 +13,6 @@ namespace Business.Abstract
         List<Product> GetAllRecentProducts();
         List<Product> GetAllPopularProducts();
         Product GetProductById(int id);
-        List<Product> GetProductsBySubCategoryId(int id);
+        List<Product> GetProductsBySubCategoryId(int subCategoryId, int productId);
     }
 }
