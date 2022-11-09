@@ -13,5 +13,6 @@ namespace DataAccess.Abstract
         List<Product> GetRecentProducts();
         List<Product> GetPopularProducts();
         Product GetProduct(int id);
+        List<Product> GetLikeProducts(int subCategoryId);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Microsoft.AspNetCore.Mvc;
+using WebUI.ViewModels;
 
 namespace WebUI.Controllers
 {
@@ -19,7 +20,13 @@ namespace WebUI.Controllers
         public IActionResult Detail(int id)
         {
             var product = _productService.GetProductById(id);
-            return View(product);
+            var likeProducts = _productService.GetProductsBySubCategoryId(product.SubCategoryId);
+            ProductDetailVM vm = new()
+            {
+                Product = product,
+                LikeProducts = likeProducts
+            };
+            return View(vm);
         }
     }
 }

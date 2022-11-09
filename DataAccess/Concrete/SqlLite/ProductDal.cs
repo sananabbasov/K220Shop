@@ -12,6 +12,13 @@ namespace DataAccess.Concrete.SqlLite
 {
     public class ProductDal : EfRepositoryBase<Product, AppDbContext>, IProductDal
     {
+        public List<Product> GetLikeProducts(int subCategoryId)
+        {
+            using var context = new AppDbContext();
+            var products =  context.Products.Include(x=>x.ProductPictures).ThenInclude(x=>x.Picture).Where(x=>x.SubCategoryId == subCategoryId).ToList();
+            return products;
+        }
+
         public List<Product> GetPopularProducts()
         {
             using var _context = new AppDbContext();
